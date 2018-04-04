@@ -14,13 +14,19 @@
 
   - block:
 
-    - name: Untar the ssl_certs tarball from sensuapp.org
+    - name: download the ssl_certs tarball from sensuapp.org
+      get_url:
+        url: "http://sensuapp.org/docs/{{ sensu_ssl_tool_version }}/files/sensu_ssl_tool.tar"
+        dest: "{{ sensu_config_path }}/ssl_generation/sensu_ssl_tool.tar"
+        mode: 0666
+        force: no
+
+    - name: Extract the ssl_certs tarball from sensuapp.org
       unarchive:
-      args:
-        src: http://sensuapp.org/docs/{{ sensu_ssl_tool_version }}/files/sensu_ssl_tool.tar
+        src: "{{ sensu_config_path }}/ssl_generation/sensu_ssl_tool.tar"
         dest: "{{ sensu_config_path }}/ssl_generation/"
         creates: "{{ sensu_config_path }}/ssl_generation/sensu_ssl_tool"
-        copy: no
+        remote_src: yes
 
     - name: Generate SSL certs
       command: "{{ __bash_path }} {{ sensu_config_path }}/ssl_generation/sensu_ssl_tool/ssl_certs.sh generate"
