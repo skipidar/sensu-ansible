@@ -79,3 +79,7 @@ The playbook, which installs  Sensu Master Sensu Master with all dependencies:
       uchiwa_port: 3000
       
 ```
+
+## Test with Vagrant
+Use Vagrant to execute a deployment locally. /
+Check the vagrant project [here](tests/README.md)
