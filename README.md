@@ -82,4 +82,5 @@ The playbook, which installs  Sensu Master Sensu Master with all dependencies:
 
 ## Test with Vagrant
 Use Vagrant to execute a deployment locally. /
-Check the vagrant project [here](tests/README.md)
+Check the vagrant project [here](https://github.com/skipidar/sensu-ansible/tree/master/tests)
+
