@@ -80,6 +80,15 @@ The playbook, which installs  Sensu Master Sensu Master with all dependencies:
       
 ```
 
+## Role Variables
+Additional Role variables
+
+Variable  | Describtion | Example 
+------------- | -------------
+sensu_client_networkadapter_name  | The name of teh network adapter, which should be used, to retrieve the ipv4, visible in the sensu client |  ansible_enp0s8
+
+
+
 ## Test with Vagrant
 Use Vagrant to execute a deployment locally. /
 Check the vagrant project [here](https://github.com/skipidar/sensu-ansible/tree/master/tests)
