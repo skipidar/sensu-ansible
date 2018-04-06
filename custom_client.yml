@@ -1,0 +1,21 @@
+---
+# tasks/plugins.yml: Deploy available checks/plugins/handlers/filters/mutators
+
+  - include_vars: "{{ ansible_distribution }}.yml"
+
+  - name: Set the client ip correctly
+    block:
+
+      - name: get the ip
+        command: $(/sbin/ip -o -4 addr list {{sensu_client_networkadapter_name}} | awk '{print $4}' | cut -d/ -f1)
+        register: sensu_client_networkadapter_ip
+
+      - name: get the ip
+        lineinfile:
+          path: /etc/sensu/conf.d/client.json
+          regexp: '*address*'
+          line: '\"address\": \"{{sensu_client_networkadapter_ip}}\",'
+
+    when:  
+      - sensu_client_networkadapter_name is defined
+      - sensu_client_networkadapter_name != ""

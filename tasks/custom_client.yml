@@ -1,0 +1,17 @@
+---
+# tasks/plugins.yml: Deploy available checks/plugins/handlers/filters/mutators
+
+  - include_vars: "{{ ansible_distribution }}.yml"
+
+  - name: Set the client ip correctly
+    block:
+
+      - name: set the ip
+        lineinfile:
+          path: /etc/sensu/conf.d/client.json
+          regexp: '(.*)address(.*)'
+          line: '   "address": "{{ansible_enp0s8.ipv4.address}}",'
+
+    when:  
+      - sensu_client_networkadapter_name is defined
+      - sensu_client_networkadapter_name != ""
