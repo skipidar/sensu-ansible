@@ -10,4 +10,4 @@
       sensu_include_dashboard: true         
       uchiwa_users: [{username: user, password: password}]
       uchiwa_port: 3000
-      
+      sensu_client_networkadapter_name: enp0s8      

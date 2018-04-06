@@ -1,0 +1,13 @@
+---
+- name: Install sensu client
+  hosts: slaves
+  become: true
+  roles:
+    - role: cmacrae.sensu
+      rabbitmq_server: false
+      redis_server: false
+      sensu_master: false
+      sensu_include_dashboard: false
+      sensu_client_networkadapter_name: enp0s8
+
+      
