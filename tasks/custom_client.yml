@@ -10,7 +10,7 @@
         lineinfile:
           path: /etc/sensu/conf.d/client.json
           regexp: '(.*)address(.*)'
-          line: '   "address": "{{ansible_enp0s8.ipv4.address}}",'
+          line: "  \"address\" : \"{{ hostvars[inventory_hostname]['ansible_'+sensu_client_networkadapter_name]['ipv4']['address'] }}\", "
 
     when:  
       - sensu_client_networkadapter_name is defined
